@@ -1,0 +1,402 @@
+!DOCTYPE html
+
+html class=dark h-full lang=enhead
+meta charset=utf-8
+meta content=width=device-width, initial-scale=1.0 name=viewport
+titleAI Agent — Live Demotitle
+link href=httpsfonts.googleapis.com rel=preconnect
+link crossorigin= href=httpsfonts.gstatic.com rel=preconnect
+link href=httpsfonts.googleapis.comcss2family=JetBrains+Monowght@400;500;600&amp;family=Plus+Jakarta+Sanswght@400;500;600;700&amp;display=swap rel=stylesheet
+link href=httpsfonts.googleapis.comcss2family=Material+Symbols+Outlinedwght,FILL@100..700,0..1&amp;display=swap rel=stylesheet
+link href=httpsfonts.googleapis.comcss2family=Material+Symbols+Outlinedwght,FILL@100..700,0..1&amp;display=swap rel=stylesheet
+script src=httpscdn.tailwindcss.complugins=forms,container-queriesscript
+script id=tailwind-config
+    tailwind.config = {
+      darkMode class,
+      theme {
+        extend {
+          colors {
+            secondary-fixed-dim #7bd0ff,
+            on-tertiary-container #081486,
+            on-primary-container #0d0096,
+            on-secondary-container #00374d,
+            surface-bright #323949,
+            on-primary-fixed #07006c,
+            on-primary #1000a9,
+            on-secondary-fixed-variant #004c69,
+            surface-container-highest #2e3545,
+            on-primary-fixed-variant #2f2ebe,
+            primary-container #8083ff,
+            surface-container-low #141b2b,
+            on-tertiary-fixed #000767,
+            on-secondary #00354a,
+            primary-fixed-dim #c0c1ff,
+            tertiary-fixed-dim #bdc2ff,
+            secondary-fixed #c4e7ff,
+            primary #c0c1ff,
+            tertiary-fixed #e0e0ff,
+            surface-container-high #232a3a,
+            on-error-container #ffdad6,
+            inverse-primary #494bd6,
+            on-surface #dce2f7,
+            error #ffb4ab,
+            surface-container #191f2f,
+            on-secondary-fixed #001e2c,
+            on-tertiary #131e8c,
+            inverse-on-surface #293040,
+            secondary #7bd0ff,
+            on-tertiary-fixed-variant #2f3aa3,
+            secondary-container #00a6e0,
+            on-surface-variant #c7c4d7,
+            background #0c1322,
+            tertiary #bdc2ff,
+            tertiary-container #7c87f3,
+            primary-fixed #e1e0ff,
+            surface-variant #2e3545,
+            surface-dim #0c1322,
+            inverse-surface #dce2f7,
+            surface-container-lowest #070e1d,
+            outline #908fa0,
+            outline-variant #464554,
+            error-container #93000a,
+            surface-tint #c0c1ff,
+            on-error #690005,
+            on-background #dce2f7,
+            surface #0c1322
+          },
+          borderRadius {
+            DEFAULT 0.25rem,
+            lg 0.5rem,
+            xl 0.75rem,
+            full 9999px
+          },
+          spacing {
+            gutter-mobile 1rem,
+            space-xs 0.5rem,
+            space-3xl 4rem,
+            space-xl 2rem,
+            space-md 1rem,
+            space-sm 0.75rem,
+            space-lg 1.5rem,
+            space-2xs 0.25rem,
+            space-2xl 3rem,
+            gutter-desktop 1.5rem,
+            margin-mobile 1rem,
+            margin-desktop 2.5rem
+          },
+          fontFamily {
+            body-sm [Plus Jakarta Sans],
+            label-md [JetBrains Mono],
+            headline-md [Plus Jakarta Sans],
+            headline-xl-mobile [Plus Jakarta Sans],
+            body-md [Plus Jakarta Sans],
+            headline-sm [Plus Jakarta Sans],
+            headline-lg-mobile [Plus Jakarta Sans],
+            headline-xl [Plus Jakarta Sans],
+            headline-lg [Plus Jakarta Sans],
+            code-block [JetBrains Mono],
+            label-sm [JetBrains Mono],
+            body-lg [Plus Jakarta Sans]
+          },
+          fontSize {
+            body-sm [13px, { lineHeight 20px, fontWeight 400 }],
+            label-md [13px, { lineHeight 18px, letterSpacing 0.02em, fontWeight 500 }],
+            headline-md [24px, { lineHeight 32px, letterSpacing -0.01em, fontWeight 600 }],
+            headline-xl-mobile [32px, { lineHeight 40px, letterSpacing -0.02em, fontWeight 700 }],
+            body-md [15px, { lineHeight 24px, fontWeight 400 }],
+            headline-sm [20px, { lineHeight 28px, letterSpacing -0.005em, fontWeight 600 }],
+            headline-lg-mobile [26px, { lineHeight 34px, letterSpacing -0.01em, fontWeight 600 }],
+            headline-xl [48px, { lineHeight 56px, letterSpacing -0.02em, fontWeight 700 }],
+            headline-lg [36px, { lineHeight 44px, letterSpacing -0.02em, fontWeight 700 }],
+            code-block [13px, { lineHeight 22px, fontWeight 400 }],
+            label-sm [11px, { lineHeight 16px, letterSpacing 0.04em, fontWeight 500 }],
+            body-lg [18px, { lineHeight 28px, fontWeight 400 }]
+          }
+        },
+      },
+    }
+  script
+style
+    .material-symbols-outlined {
+      font-variation-settings 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align middle;
+      display inline-block;
+      line-height 1;
+    }
+    @keyframes subtlePulse {
+      0%, 100% { opacity 1; transform scale(1); }
+      50% { opacity 0.4; transform scale(0.92); }
+    }
+    .agent-pulse {
+      animation subtlePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+     Custom scrollbar for dense terminalresults inside viewport 
+    -webkit-scrollbar {
+      width 6px;
+      height 6px;
+    }
+    -webkit-scrollbar-track {
+      background rgba(12, 19, 34, 0.5);
+    }
+    -webkit-scrollbar-thumb {
+      background #2e3545;
+      border-radius 9999px;
+    }
+    -webkit-scrollbar-thumbhover {
+      background #464554;
+    }
+  style
+head
+body class=bg-[#0B0F17] text-on-surface font-body-sm antialiased h-screen overflow-hidden flex flex-col selectionbg-primary-container30 selectiontext-primary
+!-- Atmospheric Glow Overlays --
+div class=fixed top-0 left-14 w-[600px] h-[280px] bg-primary-container10 blur-[130px] pointer-events-none rounded-fulldiv
+div class=fixed bottom-0 right-14 w-[500px] h-[300px] bg-secondary-container10 blur-[140px] pointer-events-none rounded-fulldiv
+!-- Focused Minimal Header (Strictly Single Screen Hackathon Tooling) --
+header class=w-full h-16 border-b border-outline-variant30 bg-surface-container-lowest90 backdrop-blur-md px-gutter-desktop flex items-center justify-between z-30 shrink-0
+div class=flex items-center gap-space-md
+!-- Neural Sparkle Icon & Brand Anchor --
+div class=w-9 h-9 rounded-lg bg-surface-container border border-outline-variant50 flex items-center justify-center shadow-[0_0_16px_rgba(99,102,241,0.25)] relative
+span class=material-symbols-outlined text-secondary data-icon=neurology style=font-size 20px;neurologyspan
+div class=absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#7bd0ff]div
+div
+div
+div class=flex items-center gap-space-xs
+h1 class=font-headline-sm text-headline-sm tracking-tight text-on-surface font-boldAI Agenth1
+span class=font-label-sm text-label-sm text-primary bg-primary10 border border-primary20 px-2 py-0.5 rounded-fullAutonomous Corespan
+div
+p class=font-body-sm text-body-sm text-on-surface-variant leading-none mt-0.5Give the agent a task and get a resultp
+div
+div
+!-- Status Chip --
+div class=flex items-center gap-space-sm
+div class=inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant40 shadow-inner
+span class=relative flex h-2 w-2
+span class=agent-pulse absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75span
+span class=relative inline-flex rounded-full h-2 w-2 bg-secondaryspan
+span
+span class=font-label-sm text-label-sm text-on-surface font-medium tracking-wideAgent v2.4 • Onlinespan
+div
+div
+header
+!-- Main Viewport Canvas (Split Layout, Fits Exactly 100vh) --
+main class=flex-1 p-space-lg grid grid-cols-1 lggrid-cols-12 gap-space-lg overflow-hidden min-h-0
+!-- Left Column Task Input & Pipeline Controls (5 Columns) --
+section class=lgcol-span-5 flex flex-col gap-space-md h-full min-h-0
+!-- Input Card --
+div class=bg-surface-container-low80 backdrop-blur-md border border-outline-variant40 rounded-xl p-space-md flex flex-col flex-1 shadow-[0_8px_32px_rgba(0,0,0,0.4)] relative min-h-0
+div class=flex items-center justify-between mb-space-xs
+label class=font-label-md text-label-md text-primary font-semibold flex items-center gap-1.5 for=task-input
+span class=material-symbols-outlined text-secondary data-icon=terminal style=font-size 16px;terminalspan
+            Task Description
+          label
+span class=font-label-sm text-label-sm text-outlineMarkdown &amp; natural languagespan
+div
+!-- Generous Textarea --
+div class=relative flex-1 min-h-[140px] flex flex-col
+textarea class=w-full flex-1 bg-surface-container-lowest border border-outline-variant50 focusborder-secondary focusring-1 focusring-secondary40 rounded-lg p-3 text-on-surface font-body-sm text-body-sm resize-none transition-all placeholdertext-outline70 focusoutline-none id=task-input placeholder=e.g. Scrape the latest top 5 tech news headlines, synthesize executive takeaways, and write a summary email with prioritized action items...Scrape the latest top 5 tech news headlines, synthesize executive takeaways, and write a summary email with prioritized action items.textarea
+div
+!-- Quick-Fill Prompt Chips --
+div class=mt-space-sm
+div class=text-[11px] font-label-sm uppercase tracking-wider text-outline mb-1.5 font-mediumQuick Promptsdiv
+div class=flex flex-wrap gap-1.5
+button class=px-2.5 py-1 rounded-md bg-surface-container hoverbg-surface-container-high border border-outline-variant40 hoverborder-secondary50 text-on-surface-variant hovertext-on-surface font-label-sm text-label-sm transition-all duration-150 flex items-center gap-1 onclick=setPrompt('Perform automated competitive analysis across leading multi-agent frameworks with benchmark metrics.')
+span class=material-symbols-outlined text-secondary data-icon=bolt style=font-size 13px;boltspan
+              Competitive Analysis
+            button
+button class=px-2.5 py-1 rounded-md bg-surface-container hoverbg-surface-container-high border border-outline-variant40 hoverborder-secondary50 text-on-surface-variant hovertext-on-surface font-label-sm text-label-sm transition-all duration-150 flex items-center gap-1 onclick=setPrompt('Run full telemetry diagnostics on ETL pipeline cluster, isolate memory leaks, and generate fix script.')
+span class=material-symbols-outlined text-secondary data-icon=dataset style=font-size 13px;datasetspan
+              Data Pipeline Diagnostic
+            button
+button class=px-2.5 py-1 rounded-md bg-surface-container hoverbg-surface-container-high border border-outline-variant40 hoverborder-secondary50 text-on-surface-variant hovertext-on-surface font-label-sm text-label-sm transition-all duration-150 flex items-center gap-1 onclick=setPrompt('Draft production v2.4.0 release notes from git commit history and changelog diffs with security patch alerts.')
+span class=material-symbols-outlined text-secondary data-icon=description style=font-size 13px;descriptionspan
+              Draft Release Notes
+            button
+div
+div
+!-- Action Row --
+div class=mt-space-md pt-space-sm border-t border-outline-variant30 flex items-center justify-between
+div class=flex items-center gap-2 text-outline font-label-sm text-label-sm
+kbd class=px-1.5 py-0.5 rounded bg-surface-container border border-outline-variant text-[10px] text-on-surfaceCtrlkbd + kbd class=px-1.5 py-0.5 rounded bg-surface-container border border-outline-variant text-[10px] text-on-surfaceEnterkbd
+div
+button class=inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-inverse-primary hoverbg-[#3d3fcf] text-white font-label-md text-label-md font-semibold tracking-wide shadow-[0_0_20px_rgba(99,102,241,0.4)] activescale-[0.98] transition-all duration-150 cursor-pointer id=run-button onclick=triggerExecution()
+span class=material-symbols-outlined data-icon=smart_toy style=font-size 18px;smart_toyspan
+spanRun Agentspan
+button
+div
+div
+!-- Dedicated Status Pipeline Widget --
+div class=bg-surface-container-lowest border border-outline-variant40 rounded-xl p-space-md shrink-0 shadow-md
+div class=flex items-center justify-between mb-space-sm
+div class=flex items-center gap-2
+span class=font-label-md text-label-md font-semibold text-on-surfacePipeline Sequencespan
+span class=inline-block w-1.5 h-1.5 rounded-full bg-secondaryspan
+div
+span class=font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded border border-outline-variant40 id=pipeline-timerElapsed 1.8sspan
+div
+!-- 3 Exact States Progress Flow --
+div class=grid grid-cols-3 gap-2
+!-- State 1 Understanding task --
+div class=p-2.5 rounded-lg bg-surface-container-low border border-outline-variant60 flex flex-col gap-1.5 relative overflow-hidden
+div class=flex items-center justify-between
+span class=font-label-sm text-[10px] text-outline uppercase tracking-wider font-semiboldStep 01span
+span class=material-symbols-outlined text-secondary data-icon=check_circle style=font-size 16px;check_circlespan
+div
+div class=font-body-sm text-body-sm font-medium text-on-surface leading-tightUnderstanding taskdiv
+div class=w-full bg-surface-container h-1 rounded-full overflow-hidden
+div class=bg-secondary h-full w-fulldiv
+div
+div
+!-- State 2 Using tools --
+div class=p-2.5 rounded-lg bg-surface-container-low border border-secondary40 shadow-[0_0_12px_rgba(123,208,255,0.15)] flex flex-col gap-1.5 relative overflow-hidden
+div class=flex items-center justify-between
+span class=font-label-sm text-[10px] text-secondary uppercase tracking-wider font-semiboldStep 02span
+span class=material-symbols-outlined text-secondary agent-pulse data-icon=sync style=font-size 16px;syncspan
+div
+div class=font-body-sm text-body-sm font-medium text-on-surface leading-tightUsing toolsdiv
+div class=flex items-center gap-1
+span class=font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary border border-secondary30WebSearchspan
+span class=font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-primary border border-primary30CodeInterpreterspan
+div
+div
+!-- State 3 Processing --
+div class=p-2.5 rounded-lg bg-surface-container-low border border-outline-variant60 flex flex-col gap-1.5 relative overflow-hidden
+div class=flex items-center justify-between
+span class=font-label-sm text-[10px] text-outline uppercase tracking-wider font-semiboldStep 03span
+span class=material-symbols-outlined text-primary data-icon=auto_awesome style=font-size 16px;auto_awesomespan
+div
+div class=font-body-sm text-body-sm font-medium text-on-surface leading-tightProcessingdiv
+div class=w-full bg-surface-container h-1 rounded-full overflow-hidden
+div class=bg-primary h-full w-45 animate-pulsediv
+div
+div
+div
+div
+section
+!-- Right Column Result Section (7 Columns) --
+section class=lgcol-span-7 flex flex-col h-full min-h-0
+div class=bg-surface-container-low80 backdrop-blur-md border border-outline-variant40 rounded-xl flex flex-col flex-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden min-h-0
+!-- Result Card Header --
+div class=px-space-md py-3 border-b border-outline-variant30 bg-surface-container-lowest80 flex items-center justify-between shrink-0
+div class=flex items-center gap-space-sm
+h2 class=font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2
+span class=material-symbols-outlined text-primary data-icon=data_object style=font-size 20px;data_objectspan
+              Result
+            h2
+div class=inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary10 border border-primary30 font-label-sm text-label-sm text-primary
+span class=w-1.5 h-1.5 rounded-full bg-primaryspan
+              Completed in 2.3s • 412 tokens
+            div
+div
+!-- Utility Actions --
+div class=flex items-center gap-1.5
+button class=px-2.5 py-1 rounded bg-surface-container hoverbg-surface-container-high border border-outline-variant50 text-on-surface-variant hovertext-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1.5 id=markdown-toggle onclick=toggleMarkdown()
+span class=material-symbols-outlined data-icon=code style=font-size 15px;codespan
+              Raw Markdown
+            button
+button class=px-2.5 py-1 rounded bg-surface-container hoverbg-surface-container-high border border-outline-variant50 text-on-surface-variant hovertext-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1.5 id=copy-btn onclick=copyResult()
+span class=material-symbols-outlined data-icon=content_copy id=copy-icon style=font-size 15px;content_copyspan
+span id=copy-textCopyspan
+button
+div
+div
+!-- Result Content Canvas (Scrollable inside its container) --
+div class=flex-1 p-space-lg overflow-y-auto font-body-sm text-body-sm text-on-surface space-y-space-md id=result-canvas
+!-- Executive Synthesized Block --
+div class=bg-surface-container-lowest70 border border-outline-variant30 rounded-lg p-space-md
+div class=flex items-center justify-between mb-2
+h3 class=font-headline-sm text-[16px] font-semibold text-secondary flex items-center gap-1.5
+span class=material-symbols-outlined data-icon=feed style=font-size 18px;feedspan
+                Executive Intelligence Brief
+              h3
+span class=font-label-sm text-[11px] text-outlineSources TechCrunch, Reuters Tech, arXivspan
+div
+p class=text-on-surface leading-relaxed mb-3
+              Synthesized live telemetry across top tech news feeds. Multi-agent orchestration frameworks and open weights local inference models surged by strong34%strong in enterprise pilot deployments this fiscal quarter.
+            p
+!-- Structured Takeaway Bullet Points --
+ul class=space-y-2 border-t border-outline-variant20 pt-2.5 text-on-surface
+li class=flex items-start gap-2
+span class=material-symbols-outlined text-secondary shrink-0 mt-0.5 data-icon=arrow_right style=font-size 16px;arrow_rightspan
+spanstrongAgentic Framework Adoptionstrong Enterprise teams are replacing single prompt endpoints with recursive tool-calling pipelines for compliance automation.span
+li
+li class=flex items-start gap-2
+span class=material-symbols-outlined text-secondary shrink-0 mt-0.5 data-icon=arrow_right style=font-size 16px;arrow_rightspan
+spanstrongHardware Saturationstrong Edge device neural accelerators show a 2.4x latency reduction on quantized 8B-parameter workflows.span
+li
+li class=flex items-start gap-2
+span class=material-symbols-outlined text-secondary shrink-0 mt-0.5 data-icon=arrow_right style=font-size 16px;arrow_rightspan
+spanstrongAutonomous Diagnosticsstrong Autonomous infrastructure repair agents reduced critical staging downtime incidents by 68%.span
+li
+ul
+div
+!-- Structured Data Table --
+div class=border border-outline-variant30 rounded-lg overflow-hidden bg-surface-container-lowest90
+div class=px-3 py-2 bg-surface-container border-b border-outline-variant30 flex items-center justify-between font-label-sm text-label-sm
+span class=text-on-surface font-semibold flex items-center gap-1.5
+span class=material-symbols-outlined text-primary data-icon=table_chart style=font-size 15px;table_chartspan
+                Synthesized Metric Matrix
+              span
+span class=text-outlineLive Extractionspan
+div
+table class=w-full text-left border-collapse font-label-sm text-[12px]
+thead
+tr class=border-b border-outline-variant30 text-outline uppercase tracking-wider bg-surface-container-low50
+th class=py-2 px-3Headline  Topicth
+th class=py-2 px-3Impactth
+th class=py-2 px-3Categoryth
+th class=py-2 px-3 text-rightConfidenceth
+tr
+thead
+tbody class=divide-y divide-outline-variant20 text-on-surface-variant
+tr class=hoverbg-surface-container50 transition-colors
+td class=py-2 px-3 font-medium text-on-surfaceSub-millisecond Agent Routerstd
+td class=py-2 px-3 text-secondaryHigh (Core Infra)td
+td class=py-2 px-3Runtimetd
+td class=py-2 px-3 text-right font-label-md text-secondary99.4%td
+tr
+tr class=hoverbg-surface-container50 transition-colors
+td class=py-2 px-3 font-medium text-on-surfaceZero-shot Tool Use Benchmarkstd
+td class=py-2 px-3 text-primaryModeratetd
+td class=py-2 px-3Evaluationtd
+td class=py-2 px-3 text-right font-label-md text-primary97.1%td
+tr
+tr class=hoverbg-surface-container50 transition-colors
+td class=py-2 px-3 font-medium text-on-surfaceLocal Speculative Decoding V3td
+td class=py-2 px-3 text-secondaryHigh (Speedup)td
+td class=py-2 px-3Optimizationtd
+td class=py-2 px-3 text-right font-label-md text-secondary98.8%td
+tr
+tbody
+table
+div
+!-- Code Snippet  Generated Dispatch Payload --
+div class=border border-outline-variant30 rounded-lg overflow-hidden bg-[#070A0F]
+div class=px-3 py-1.5 bg-surface-container-low border-b border-outline-variant30 flex items-center justify-between text-outline font-label-sm text-label-sm
+span class=flex items-center gap-1.5 text-on-surface-variant
+span class=material-symbols-outlined text-secondary data-icon=send style=font-size 14px;sendspan
+                Generated Summary Email Payload
+              span
+spandispatch_payload.jsonspan
+div
+pre class=p-3 font-code-block text-code-block text-primary leading-relaxed overflow-x-auto selectionbg-primary-container40code{
+  span class=text-secondaryrecipientspan span class=text-on-surfaceexecutive-team@company.aispan,
+  span class=text-secondarysubjectspan span class=text-on-surface⚡ Weekly Intelligence Autonomous Agent Accelerationspan,
+  span class=text-secondaryaction_itemsspan [
+    span class=text-on-surfaceScale worker nodes for CodeInterpreter tool clusterspan,
+    span class=text-on-surfaceApprove staging release v2.4.0 with real-time streamspan
+  ],
+  span class=text-secondarygenerated_atspan span class=text-on-surface2025-02-23T143200Zspan,
+  span class=text-secondaryagent_statusspan span class=text-secondaryREADY_FOR_DEPLOYMENTspan
+}codepre
+div
+div
+!-- Raw Markdown View (Hidden by Default) --
+textarea class=hidden flex-1 p-space-lg font-code-block text-code-block bg-[#070A0F] text-on-surface resize-none focusoutline-none overflow-y-auto id=raw-markdown-view readonly=# Executive Intelligence Brief
+Synthesized live telemetry across top tech news feeds. Multi-agent orchestration frameworks and open weights local inference models surged by 34% in enterprise pilot deployments this fiscal quarter.
+
+### Key Takeaways
+- Agentic Framework Adoption Enterprise teams are replacing single prompt endpoints with recursive tool-calling pipelines.
+- Hardware Saturation Edge device neural accelerators show a 2.4x latency reduction on quantized 8B-parameter workflows.
+- Autonomous Diagnostics Infrastructure repair agents reduced critical staging downtime incidents by 68%.
+
+### Dispatch Payloadtextareadivsectionmainbodyhtml
