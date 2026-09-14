@@ -10,7 +10,12 @@ const nextConfig = {
         },
       ];
     }
-    return [];
+    return [
+      {
+        source: '/api/agent/:path*',
+        destination: '/api/index',
+      },
+    ];
   },
 };
 
